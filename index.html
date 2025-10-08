@@ -6,244 +6,282 @@
     <title>Aplikasi Cuaca Lokal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!DOCTYPE html>
-    <html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Aplikasi Cuaca Lokal</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-            body {
-                background: linear-gradient(135deg, #1e5799, #207cca, #2989d8, #1e5799);
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 20px;
-            }
+   <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Cuaca Lokal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #1e5799, #207cca, #2989d8, #1e5799);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: border 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .result h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .info {
+            text-align: left;
+            margin-top: 10px;
+        }
+        .info p {
+            margin: 12px 0;
+            font-size: 16px;
+            color: #34495e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .label {
+            font-weight: bold;
+            color: #2980b9;
+            min-width: 140px;
+        }
+        .value {
+            text-align: right;
+            flex: 1;
+        }
+        .error {
+            color: #e74c3c;
+            margin-top: 15px;
+            display: none;
+            background: rgba(231, 76, 60, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .loading {
+            display: none;
+            margin: 15px 0;
+            color: #3498db;
+        }
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .weather-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        @media (max-width: 480px) {
             .container {
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 20px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-                width: 90%;
-                max-width: 600px;
-                padding: 30px;
-                text-align: center;
+                padding: 20px;
             }
             h1 {
-                color: #2c3e50;
-                margin-bottom: 20px;
-                font-size: 28px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-            }
-            .input-group {
-                margin: 20px 0;
-            }
-            input[type="text"] {
-                width: 100%;
-                padding: 14px;
-                border: 2px solid #3498db;
-                border-radius: 12px;
-                font-size: 16px;
-                outline: none;
-                transition: border 0.3s;
-            }
-            input[type="text"]:focus {
-                border-color: #2980b9;
-                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            }
-            button {
-                background: #3498db;
-                color: white;
-                border: none;
-                padding: 12px 24px;
-                font-size: 16px;
-                border-radius: 12px;
-                cursor: pointer;
-                transition: background 0.3s, transform 0.2s;
-                margin-top: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                width: 100%;
-            }
-            button:hover {
-                background: #2980b9;
-                transform: translateY(-2px);
-            }
-            button:active {
-                transform: translateY(0);
-            }
-            .result {
-                margin-top: 25px;
-                padding: 20px;
-                background: #f8f9fa;
-                border-radius: 15px;
-                display: none;
-                animation: fadeIn 0.6s ease;
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            .result h2 {
-                color: #2c3e50;
-                margin-bottom: 15px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-            }
-            .info {
-                text-align: left;
-                margin-top: 10px;
+                font-size: 24px;
             }
             .info p {
-                margin: 12px 0;
-                font-size: 16px;
-                color: #34495e;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .label {
-                font-weight: bold;
-                color: #2980b9;
-                min-width: 140px;
+                flex-direction: column;
+                align-items: flex-start;
             }
             .value {
-                text-align: right;
-                flex: 1;
-            }
-            .error {
-                color: #e74c3c;
-                margin-top: 15px;
-                display: none;
-                background: rgba(231, 76, 60, 0.1);
-                padding: 10px;
-                border-radius: 8px;
                 text-align: left;
+                margin-top: 5px;
             }
-            .loading {
-                display: none;
-                margin: 15px 0;
-                color: #3498db;
-            }
-            .loading i {
-                animation: spin 1s linear infinite;
-            }
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            .weather-icon {
-                font-size: 24px;
-                margin-right: 10px;
-            }
-            @media (max-width: 480px) {
-                .container {
-                    padding: 20px;
-                }
-                h1 {
-                    font-size: 24px;
-                }
-                .info p {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-                .value {
-                    text-align: left;
-                    margin-top: 5px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1><i class="fas fa-cloud-sun"></i> Cuaca Lokal</h1>
-            <div class="input-group">
-                <input type="text" id="lokasiInput" placeholder="Masukkan nama kota atau lokasi (misal: Yogyakarta, Jakarta, London)" />
-                <button id="cariBtn">
-                    <i class="fas fa-search"></i> Cari Cuaca
-                </button>
-            </div>
-            <div class="loading" id="loading">
-                <i class="fas fa-spinner"></i> Mencari data cuaca...
-            </div>
-            <div class="error" id="errorMsg"></div>
-            <div class="result" id="result">
-                <h2><i class="fas fa-info-circle"></i> Informasi Cuaca</h2>
-                <div class="info">
-                    <p>
-                        <span class="label"><i class="fas fa-map-marker-alt weather-icon"></i> Lokasi:</span>
-                        <span class="value" id="inputLokasi">-</span>
-                    </p>
-                    <p>
-                        <span class="label"><i class="fas fa-globe weather-icon"></i> Negara:</span>
-                        <span class="value" id="negara">-</span>
-                    </p>
-                    <p>
-                        <span class="label"><i class="fas fa-map weather-icon"></i> Provinsi:</span>
-                        <span class="value" id="provinsi">-</span>
-                    </p>
-                    <p>
-                        <span class="label"><i class="fas fa-city weather-icon"></i> Kota/Kecamatan:</span>
-                        <span class="value" id="kota">-</span>
-                    </p>
-                    <p>
-                        <span class="label"><i class="fas fa-thermometer-half weather-icon"></i> Suhu:</span>
-                        <span class="value" id="suhu">-</span>
-                    </p>
-                    <p>
-                        <span class="label"><i class="fas fa-map-pin weather-icon"></i> Latitude:</span>
-                        <span class="value" id="lat">-</span>
-                    </p>
-                    <p>
-                        <span class="label"><i class="fas fa-map-pin weather-icon"></i> Longitude:</span>
-                        <span class="value" id="lon">-</span>
-                    </p>
-                </div>
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-cloud-sun"></i> Cuaca Lokal</h1>
+        <div class="input-group">
+            <input type="text" id="lokasiInput" placeholder="Masukkan nama kota atau lokasi (misal: Yogyakarta, Jakarta, London)" />
+            <button id="cariBtn">
+                <i class="fas fa-search"></i> Cari Cuaca
+            </button>
+        </div>
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner"></i> Mencari data cuaca...
+        </div>
+        <div class="error" id="errorMsg"></div>
+        <div class="result" id="result">
+            <h2><i class="fas fa-info-circle"></i> Informasi Cuaca</h2>
+            <div class="info">
+                <p>
+                    <span class="label"><i class="fas fa-map-marker-alt weather-icon"></i> Lokasi:</span>
+                    <span class="value" id="inputLokasi">-</span>
+                </p>
+                <p>
+                    <span class="label"><i class="fas fa-globe weather-icon"></i> Negara:</span>
+                    <span class="value" id="negara">-</span>
+                </p>
+                <p>
+                    <span class="label"><i class="fas fa-map weather-icon"></i> Provinsi:</span>
+                    <span class="value" id="provinsi">-</span>
+                </p>
+                <p>
+                    <span class="label"><i class="fas fa-city weather-icon"></i> Kota/Kecamatan:</span>
+                    <span class="value" id="kota">-</span>
+                </p>
+                <p>
+                    <span class="label"><i class="fas fa-thermometer-half weather-icon"></i> Suhu:</span>
+                    <span class="value" id="suhu">-</span>
+                </p>
+                <p>
+                    <span class="label"><i class="fas fa-map-pin weather-icon"></i> Latitude:</span>
+                    <span class="value" id="lat">-</span>
+                </p>
+                <p>
+                    <span class="label"><i class="fas fa-map-pin weather-icon"></i> Longitude:</span>
+                    <span class="value" id="lon">-</span>
+                </p>
             </div>
         </div>
-    
-        <script>
-            $(document).ready(function() {
-                $("#cariBtn").on("click", cariCuaca);
-                $("#lokasiInput").on("keypress", function(e) {
-                    if (e.which === 13) cariCuaca(); // Enter key
-                });
-                
-                // Fokus ke input saat halaman dimuat
-                $("#lokasiInput").focus();
-            });
-    
-            function cariCuaca() {
-                const lokasi = $("#lokasiInput").val().trim();
-                if (!lokasi) {
-                    $("#errorMsg").html("<i class='fas fa-exclamation-circle'></i> Mohon masukkan nama kota atau lokasi.").show();
-                    $("#result").hide();
-                    $("#loading").hide();
-                    return;
-                }
-    
-                // Tampilkan loading indicator
-                $("#loading").show();
-                $("#errorMsg").hide();
-                $("#result").hide();
-    
-                const urlapi = `https://api.weatherapi.com/v1/current.json?key=76d7a4136a6948e8ac464008250810&q=${encodeURIComponent(lokasi)}&aqi=no`;
+    </div>
 
+    <script>
+        $(document).ready(function() {
+            $("#cariBtn").on("click", cariCuaca);
+            $("#lokasiInput").on("keypress", function(e) {
+                if (e.which === 13) cariCuaca(); // Enter key
+            });
+            
+            // Fokus ke input saat halaman dimuat
+            $("#lokasiInput").focus();
+        });
+
+        function cariCuaca() {
+            const lokasi = $("#lokasiInput").val().trim();
+            if (!lokasi) {
+                $("#errorMsg").html("<i class='fas fa-exclamation-circle'></i> Mohon masukkan nama kota atau lokasi.").show();
+                $("#result").hide();
+                $("#loading").hide();
+                return;
+            }
+
+            // Tampilkan loading indicator
+            $("#loading").show();
+            $("#errorMsg").hide();
+            $("#result").hide();
+
+            const urlapi = `https://api.weatherapi.com/v1/current.json?key=76d7a4136a6948e8ac464008250810&q=${encodeURIComponent(lokasi)}&aqi=no`;
+
+            $.ajax({
+                url: urlapi,
+                method: "GET",
+                timeout: 10000, // 10 detik timeout
+                success: function(data) {
+                    console.log(data);
+                    $("#loading").hide();
+                    $("#errorMsg").hide();
+                    
+                    // Update data cuaca
+                    $("#inputLokasi").text(data.location.name);
+                    $("#negara").text(data.location.country);
+                    $("#provinsi").text(data.location.region || "-");
+                    $("#kota").text(data.location.name);
+                    $("#suhu").text(data.current.temp_c + " °C");
+                    $("#lat").text(data.location.lat);
+                    $("#lon").text(data.location.lon);
+                    
+                    $("#result").show();
+                },
+                error: function(xhr, status, error) {
+                    $("#loading").hide();
+                    let errorMessage = "Terjadi kesalahan. Silakan coba lagi.";
+                    
+                    if (status === "timeout") {
+                        errorMessage = "Permintaan waktu habis. Periksa koneksi internet Anda.";
+                    } else if (xhr.status === 400) {
+                        errorMessage = "Lokasi tidak ditemukan. Silakan coba dengan nama kota yang berbeda.";
+                    }
+                    
+                    $("#errorMsg").html(`<i class='fas fa-exclamation-triangle'></i> ${errorMessage}`).show();
+                    $("#result").hide();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
 </body>
 </html>
