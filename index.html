@@ -218,5 +218,32 @@
             </div>
         </div>
     
-        
+        <script>
+            $(document).ready(function() {
+                $("#cariBtn").on("click", cariCuaca);
+                $("#lokasiInput").on("keypress", function(e) {
+                    if (e.which === 13) cariCuaca(); // Enter key
+                });
+                
+                // Fokus ke input saat halaman dimuat
+                $("#lokasiInput").focus();
+            });
+    
+            function cariCuaca() {
+                const lokasi = $("#lokasiInput").val().trim();
+                if (!lokasi) {
+                    $("#errorMsg").html("<i class='fas fa-exclamation-circle'></i> Mohon masukkan nama kota atau lokasi.").show();
+                    $("#result").hide();
+                    $("#loading").hide();
+                    return;
+                }
+    
+                // Tampilkan loading indicator
+                $("#loading").show();
+                $("#errorMsg").hide();
+                $("#result").hide();
+    
+                const urlapi = `https://api.weatherapi.com/v1/current.json?key=76d7a4136a6948e8ac464008250810&q=${encodeURIComponent(lokasi)}&aqi=no`;
+
+</body>
 </html>
