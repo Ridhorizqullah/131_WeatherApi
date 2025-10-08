@@ -6,7 +6,171 @@
     <title>Aplikasi Cuaca Lokal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aplikasi Cuaca Lokal</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            body {
+                background: linear-gradient(135deg, #1e5799, #207cca, #2989d8, #1e5799);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+            .container {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+                width: 90%;
+                max-width: 600px;
+                padding: 30px;
+                text-align: center;
+            }
+            h1 {
+                color: #2c3e50;
+                margin-bottom: 20px;
+                font-size: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+            .input-group {
+                margin: 20px 0;
+            }
+            input[type="text"] {
+                width: 100%;
+                padding: 14px;
+                border: 2px solid #3498db;
+                border-radius: 12px;
+                font-size: 16px;
+                outline: none;
+                transition: border 0.3s;
+            }
+            input[type="text"]:focus {
+                border-color: #2980b9;
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            }
+            button {
+                background: #3498db;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                font-size: 16px;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: background 0.3s, transform 0.2s;
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+            }
+            button:hover {
+                background: #2980b9;
+                transform: translateY(-2px);
+            }
+            button:active {
+                transform: translateY(0);
+            }
+            .result {
+                margin-top: 25px;
+                padding: 20px;
+                background: #f8f9fa;
+                border-radius: 15px;
+                display: none;
+                animation: fadeIn 0.6s ease;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .result h2 {
+                color: #2c3e50;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+            .info {
+                text-align: left;
+                margin-top: 10px;
+            }
+            .info p {
+                margin: 12px 0;
+                font-size: 16px;
+                color: #34495e;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .label {
+                font-weight: bold;
+                color: #2980b9;
+                min-width: 140px;
+            }
+            .value {
+                text-align: right;
+                flex: 1;
+            }
+            .error {
+                color: #e74c3c;
+                margin-top: 15px;
+                display: none;
+                background: rgba(231, 76, 60, 0.1);
+                padding: 10px;
+                border-radius: 8px;
+                text-align: left;
+            }
+            .loading {
+                display: none;
+                margin: 15px 0;
+                color: #3498db;
+            }
+            .loading i {
+                animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .weather-icon {
+                font-size: 24px;
+                margin-right: 10px;
+            }
+            @media (max-width: 480px) {
+                .container {
+                    padding: 20px;
+                }
+                h1 {
+                    font-size: 24px;
+                }
+                .info p {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .value {
+                    text-align: left;
+                    margin-top: 5px;
+                }
+            }
+        </style>
+    </head>
+  
     
-</body>
+        
 </html>
