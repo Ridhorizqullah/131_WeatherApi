@@ -170,7 +170,53 @@
             }
         </style>
     </head>
-  
+    <body>
+        <div class="container">
+            <h1><i class="fas fa-cloud-sun"></i> Cuaca Lokal</h1>
+            <div class="input-group">
+                <input type="text" id="lokasiInput" placeholder="Masukkan nama kota atau lokasi (misal: Yogyakarta, Jakarta, London)" />
+                <button id="cariBtn">
+                    <i class="fas fa-search"></i> Cari Cuaca
+                </button>
+            </div>
+            <div class="loading" id="loading">
+                <i class="fas fa-spinner"></i> Mencari data cuaca...
+            </div>
+            <div class="error" id="errorMsg"></div>
+            <div class="result" id="result">
+                <h2><i class="fas fa-info-circle"></i> Informasi Cuaca</h2>
+                <div class="info">
+                    <p>
+                        <span class="label"><i class="fas fa-map-marker-alt weather-icon"></i> Lokasi:</span>
+                        <span class="value" id="inputLokasi">-</span>
+                    </p>
+                    <p>
+                        <span class="label"><i class="fas fa-globe weather-icon"></i> Negara:</span>
+                        <span class="value" id="negara">-</span>
+                    </p>
+                    <p>
+                        <span class="label"><i class="fas fa-map weather-icon"></i> Provinsi:</span>
+                        <span class="value" id="provinsi">-</span>
+                    </p>
+                    <p>
+                        <span class="label"><i class="fas fa-city weather-icon"></i> Kota/Kecamatan:</span>
+                        <span class="value" id="kota">-</span>
+                    </p>
+                    <p>
+                        <span class="label"><i class="fas fa-thermometer-half weather-icon"></i> Suhu:</span>
+                        <span class="value" id="suhu">-</span>
+                    </p>
+                    <p>
+                        <span class="label"><i class="fas fa-map-pin weather-icon"></i> Latitude:</span>
+                        <span class="value" id="lat">-</span>
+                    </p>
+                    <p>
+                        <span class="label"><i class="fas fa-map-pin weather-icon"></i> Longitude:</span>
+                        <span class="value" id="lon">-</span>
+                    </p>
+                </div>
+            </div>
+        </div>
     
         
 </html>
